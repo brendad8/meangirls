@@ -81,7 +81,7 @@ number of candygrams a person gets.
 
 ``` r
 give_candygrams("Taylor Zimmerman", 2)
-#> Two for Taylor Zimmerman.
+#> [1] "Two for Taylor Zimmerman."
 ```
 
 ### Extra comments
@@ -91,7 +91,7 @@ You can also give extra commentary to your announcement:
 ``` r
 give_candygrams("Taylor Zimmerman", 2, 
                 extra_message = "Merry Christmas!")
-#> Two for Taylor Zimmerman. Merry Christmas!
+#> [1] "Two for Taylor Zimmerman. Merry Christmas!"
 ```
 
 Some special cases trigger automatic extra commentary or special
@@ -99,7 +99,7 @@ behavior:
 
 ``` r
 give_candygrams("Glen Coco", 4)
-#> Four for Glen Coco. You go, Glen Coco!
+#> [1] "Four for Glen Coco. You go, Glen Coco!"
 ```
 
 ``` r
@@ -110,5 +110,5 @@ give_candygrams("Gretchen Weiners", 4)
 ``` r
 give_candygrams("Glen Coco", 4, 
                 extra_message = "Happy Birthday.")
-#> Four for Glen Coco. Happy Birthday. You go, Glen Coco!
+#> [1] "Four for Glen Coco. Happy Birthday. You go, Glen Coco!"
 ```
