@@ -8,6 +8,7 @@
 #'
 #' @importFrom stringr str_detect str_to_title
 #' @importFrom english as.english
+#' @importFrom dplyr if_else
 #'
 #' @export
 give_candygrams <- function(person, number,
@@ -15,17 +16,13 @@ give_candygrams <- function(person, number,
 
   stopifnot(number > 0)
 
-  if (str_detect(person, "Gretchen")) {
+  extra_message <- if_else(is.null(extra_message),
+                           add_commentary(person, number),
+                           glue::glue("{extra_message} {add_commentary(person, number)}")
+  )
 
-    return("None for Gretchen Weiners.")
+  message <- if_else(str_detect(person, "Gretchen"), "None for Gretchen Weiners.", "")
 
-  }
-
-  if (is.null(extra_message)) {
-    extra_message <- add_commentary(person, number)
-  } else {
-    extra_message <- glue::glue("{extra_message} {add_commentary(person, number)}")
-  }
 
   number <- str_to_title(as.english(number))
 
@@ -44,20 +41,11 @@ give_candygrams <- function(person, number,
 #' @return A string (possibly blank)
 add_commentary <- function(person, number) {
 
-  if (stringr::str_detect(person, "Aaron")) {
+  case_when(
+    stringr::str_detect(person, "Aaron") ~"They are from Regina.",
+    number > 3 ~ glue::glue("You go, {person}!"),
+    TRUE ~ ""
+    )
 
-    return("They are from Regina.")
-
-  }
-
-
-  if (number > 3) {
-
-    return(glue::glue("You go, {person}!"))
-
-  }
-
-
-  return("")
 
 }
