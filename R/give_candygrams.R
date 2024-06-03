@@ -17,20 +17,20 @@ give_candygrams <- function(person, number,
 
   if (str_detect(person, "Gretchen")) {
 
-    return(cat("None for Gretchen Weiners."))
+    return("None for Gretchen Weiners.")
 
   }
 
   if (is.null(extra_message)) {
-
     extra_message <- add_commentary(person, number)
-
+  } else {
+    extra_message <- glue::glue("{extra_message} {add_commentary(person, number)}")
   }
 
   number <- str_to_title(as.english(number))
 
 
-  glue::glue("{number} for {person}.")
+  stringr::str_replace(stringr::str_trim(glue::glue("{number} for {person}.") + " " + extra_message), "  ", " ")
 
 
 
